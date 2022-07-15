@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Img } from '../model/img';
 
 
 @Injectable({
@@ -8,16 +9,27 @@ import { Observable } from 'rxjs';
 })
 export class UploadService {
 
-  url = "https://localhost:3000/"
+  url = "http://localhost:3000/img"
+
 
   constructor(private http: HttpClient) { }
 
-  upload(file: any) : Observable<any>{
+  upload(file: any) : Observable<Img>{
 
-    const formData = new FormData();
+    //metedologia con storage esterno
+    //const formData = new FormData();
 
-    formData.append("file", file, file.name);
+    //metodologia mockata
+    let appendImage: Img = {
+      path: "assets/img/" + file.name
+    }
+    
+    //formData.append("file", file, file.name);
+    
+    return this.http.post<Img>(this.url, appendImage);
+  }
 
-    return this.http.post(this.url, formData);
+  getAll() : Observable<Img[]>{
+    return this.http.get<Img[]>(this.url);
   }
 }

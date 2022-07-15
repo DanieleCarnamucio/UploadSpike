@@ -1,3 +1,4 @@
+<h1 class="text-center mt-3">Benvenuti in questo spike!</h1>
 <div class="container mt-5">
     <form>
         <div class="form-group">
@@ -15,4 +16,7 @@
     <div class="container" *ngIf="loading">
         <h3>Loading ...</h3>
     </div>
+
+
+    <img *ngFor="let img of images" [src]="img.path">
 </div>

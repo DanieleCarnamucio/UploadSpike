@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Img } from 'src/app/model/img';
 import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
@@ -11,11 +12,13 @@ export class UploadComponent implements OnInit {
   file!: File;
   loading: boolean = false;
   shortLink = ""
+  images : Img[] = []
 
 
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
+    this.getAll();
   }
 
   onChange(event: any){
@@ -37,9 +40,20 @@ export class UploadComponent implements OnInit {
           this.shortLink = event.link;
           this.loading = false;
         }
+      },
+      err => {
+        console.error(err)
+      },
+      () => {
+        this.getAll();
       }
-    )
-    
+    )  
+  }
+
+  getAll(){
+    this.uploadService.getAll().subscribe(obs => {
+      this.images = [...obs];
+    });
   }
 
 }
