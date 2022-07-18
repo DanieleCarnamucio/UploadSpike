@@ -27,7 +27,7 @@ export class UploadComponent implements OnInit {
       this.file = event.target.files[0];
     }
     else {
-      console.log("sei un cojone");
+      alert("Estensione non corretta")
     }
   }
 
