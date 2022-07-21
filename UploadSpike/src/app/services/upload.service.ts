@@ -9,30 +9,30 @@ import { Img } from '../model/img';
 })
 export class UploadService {
 
-  url = "http://localhost:3000/img";
+  url = "https://localhost:5001/Image";
   
 
   constructor(private http: HttpClient) { }
 
-  upload(file: any) : Observable<Img>{
+  upload(file: any) : Observable<any>{
 
     //metedologia con storage esterno
-    //const formData = new FormData();
+    const formData = new FormData();
 
     //metodologia mockata
-    let appendImage: Img = {
-      path: "assets/img/" + file.name
-    }
+    // let appendImage: Img = {
+    //   path: "assets/img/" + file.name
+    // }
     
-    //formData.append("file", file, file.name);
+    formData.append( file, file.name);
     // const fs = require( '@stdlib/fs-write-file' );
     // fs.writeFile(appendImage.path, file); 
     
     
-    return this.http.post<Img>(this.url, appendImage);
+    return this.http.post<any>(this.url, formData);
   }
 
-  getAll() : Observable<Img[]>{
-    return this.http.get<Img[]>(this.url);
+  getAll() : Observable<any>{
+    return this.http.get<any>(this.url);
   }
 }
