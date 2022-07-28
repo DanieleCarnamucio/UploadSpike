@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//import { timeStamp } from 'console';
+//import { AzureBlobStorageService } from 'src/app/azure-blob-storage.service';
 import { Img } from 'src/app/model/img';
 import { UploadService } from 'src/app/services/upload.service';
 
@@ -14,11 +16,14 @@ export class UploadComponent implements OnInit {
   shortLink = ""
   images : Img[] = []
 
+  picturesList : string[] = [];
+  sas = "";
 
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
-    this.getAll();
+    //this.getAll();
+    //this.reloadImagesList();
   }
 
   onChange(event: any){
@@ -45,15 +50,37 @@ export class UploadComponent implements OnInit {
         console.error(err)
       },
       () => {
-        this.getAll();
+        //this.getAll();
       }
     )  
   }
 
-  getAll(){
-    this.uploadService.getAll().subscribe(obs => {
-      this.images = [...obs];
-    });
-  }
+  // private reloadImagesList() {
+  //   this.blobService.listImages().then(list => {
+  //     this.picturesList = list
+  //   })
+  // }
+
+  // public downloadImage(name: string){
+  //   this.blobService.downloadImage(name,blob => {
+  //     let url = window.URL.createObjectURL(blob);
+  //     window.open(url);
+  //   })
+  // }
+
+  // public imageSelected(file : File){
+  //   this.blobService.uploadImage(this.sas, file, file.name, ()=>{
+  //     this.reloadImagesList()
+  //   })
+  // }
+
+
+
+
+  // getAll(){
+  //   this.uploadService.getAll().subscribe(obs => {
+  //     this.images = [...obs];
+  //   });
+  // }
 
 }

@@ -1,5 +1,6 @@
 <h1 class="text-center mt-3">Benvenuti in questo spike!</h1>
 <div class="container mt-5">
+    
     <form>
         <div class="form-group">
             <label for="upload">Carica file</label>
@@ -17,3 +18,41 @@
 
     <img *ngFor="let img of images" [src]="img.path">
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div>
+    <table>
+        <tr>
+            <td><input type="file" (change)="imageSelected($event.target.files[0])"></td>
+        </tr>
+        <tr>
+            <td> Insert SAS:</td>
+            <td><input type="text" (change)="setSas($event)" size="90"></td>
+        </tr>
+        <tr>
+            <td>Current SAS:</td>
+            <td>{{sas}}</td>
+        </tr>
+    </table>
+    <table>
+        <tr *ngFor="let pic of picturesList" >
+            <td>{{pic}}</td>
+            <td><button (click)="downloadImage(pic)"> download </button></td>
+        </tr>
+    </table>
+</div>  -->
