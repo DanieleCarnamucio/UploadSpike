@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     UploadComponent
+    
   ]
 })
 export class UploadModule { }

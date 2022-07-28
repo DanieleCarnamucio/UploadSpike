@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 //import { timeStamp } from 'console';
 //import { AzureBlobStorageService } from 'src/app/azure-blob-storage.service';
 import { Img } from 'src/app/model/img';
+import { Search } from 'src/app/model/search';
 import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
@@ -15,14 +17,16 @@ export class UploadComponent implements OnInit {
   loading: boolean = false;
   shortLink = ""
   images : Img[] = []
+  images2: Img[] = []
+  nome! : Search;
 
-  picturesList : string[] = [];
-  sas = "";
+  // picturesList : string[] = [];
+  // sas = "";
 
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
-    //this.getAll();
+    this.getAll();
     //this.reloadImagesList();
   }
 
@@ -34,6 +38,12 @@ export class UploadComponent implements OnInit {
     else {
       alert("Estensione non corretta")
     }
+  }
+  
+  getAll(){
+    this.uploadService.getAll().subscribe(obs => {
+      this.images = [...obs];
+    });
   }
 
   onUpload(){
@@ -53,6 +63,17 @@ export class UploadComponent implements OnInit {
         //this.getAll();
       }
     )  
+  }
+
+  search(search : NgForm){
+    const name = search.value as Search;
+    var n = search.value as string;
+    console.log(name)
+    console.log(n)
+    this.uploadService.getName(name.nome).subscribe(obs => {
+      console.log(obs)
+      this.images2= [...obs];
+    });
   }
 
   // private reloadImagesList() {
@@ -77,10 +98,5 @@ export class UploadComponent implements OnInit {
 
 
 
-  // getAll(){
-  //   this.uploadService.getAll().subscribe(obs => {
-  //     this.images = [...obs];
-  //   });
-  // }
 
 }

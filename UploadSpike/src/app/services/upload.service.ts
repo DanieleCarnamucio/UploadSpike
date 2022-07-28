@@ -9,7 +9,7 @@ import { Img } from '../model/img';
 })
 export class UploadService {
 
-  url = "https://localhost:5001/Image";
+  url = "https://localhost:5001/Image/";
   urlU = "https://localhost:5001/Image/UploadFile";
   
 
@@ -24,7 +24,11 @@ export class UploadService {
 
   }
 
-  // getAll() : Observable<any>{
-  //   return this.http.get<any>(this.url);
-  // }
+  getAll() : Observable<Img[]>{
+    return this.http.get<Img[]>(this.url);
+  }
+
+  getName(name : string) : Observable<Img[]>{
+    return this.http.get<Img[]>(this.url + name);
+  }
 }

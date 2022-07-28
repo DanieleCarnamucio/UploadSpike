@@ -10,7 +10,6 @@
     </form>
 
     
-
     <div class="container" *ngIf="loading">
         <h3>Loading ...</h3>
     </div>
@@ -19,6 +18,21 @@
     <img *ngFor="let img of images" [src]="img.path">
 </div>
 
+<div>
+    <form #searchh="ngForm" (submit)="search(searchh)">
+        <label for="cerca">cerca per nome file</label>
+        <input type="search" class="form-control" id="nome" name="nome" [ngModel]="nome?.nome" placeholder="cerca immgine">
+        <button type="submit">cerca</button>
+    </form>
+    <img *ngFor="let img2 of images2" [src]="img2.path">
+   
+</div>
+
+
+
+
+<!-- <img src="https://acadesteamfilestorage.blob.core.windows.net/filecontainer/8mmaFjrr.png" alt="">
+ https://acadesteamfilestorage.blob.core.windows.net/filecontainer/8mmaFjrr.png -->
 
 
 
