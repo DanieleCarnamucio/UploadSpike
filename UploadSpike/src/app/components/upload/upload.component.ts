@@ -60,7 +60,7 @@ export class UploadComponent implements OnInit {
         console.error(err)
       },
       () => {
-        //this.getAll();
+        this.getAll();
       }
     )  
   }
